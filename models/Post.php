@@ -500,6 +500,11 @@ class Post extends Model
             return;
         }
 
+        // Fix for unpublished posts in sitemap
+        if (!$category->published_at) {
+          return ;
+        }
+
         $paramName = substr(trim($matches[1]), 1);
         $params = [
             $paramName => $category->slug,
